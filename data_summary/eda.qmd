@@ -1,0 +1,40 @@
+---
+title: "airquality"
+format: html
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+library(tidyverse)
+df <- datasets::ChickWeight |> as_tibble()
+df
+
+```
+
+You can add options to executable code like this 
+
+
+```{r}
+
+df2  <-  df |> group_by(Diet, Time) |> 
+            summarise(avg_weigt = mean(weight))
+
+df2
+```
+
+```{r}
+df2 |> 
+    ggplot(aes(Time, avg_weigt, color = Diet)) +
+    geom_line() +
+    geom_smooth(method = "lm")
+```
+
+
+The `echo: false` option disables the printing of code (only output is displayed).
